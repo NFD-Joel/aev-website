@@ -88,16 +88,23 @@
   }
   .hero-content { max-width:560px; flex: 1; }
   .hero-fair-card {
-    flex-shrink:0; width:272px;
-    background:white; border-radius:16px;
-    box-shadow: 0 8px 32px rgba(26,63,92,0.13);
+    flex-shrink:0; width:340px;
+    background:white; border-radius:18px;
+    box-shadow: 0 16px 48px rgba(26,63,92,0.18);
     overflow:hidden; position:relative; z-index:1;
     align-self: center;
+    transform: rotate(3deg);
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    cursor: default;
+    will-change: transform;
+  }
+  .hero-fair-card:hover {
+    box-shadow: 0 24px 64px rgba(26,63,92,0.28);
   }
   .hero-fair-label {
     background: var(--blue); color:white;
-    font-size:0.72rem; font-weight:700; letter-spacing:1.5px;
-    text-transform:uppercase; padding:7px 14px; text-align:center;
+    font-size:0.75rem; font-weight:700; letter-spacing:1.5px;
+    text-transform:uppercase; padding:8px 16px; text-align:center;
   }
   .hero-fair-card img {
     width:100%; display:block; object-fit:cover;
@@ -668,6 +675,33 @@ const translations = {
 };
 
 let currentLang = 'es';
+
+// Fair card 3D tilt
+(function() {
+  function initTilt() {
+    const card = document.querySelector('.hero-fair-card');
+    if (!card) return;
+    const BASE_ROTATE = 3; // default tilt degrees
+    card.addEventListener('mousemove', function(e) {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      const rotY = BASE_ROTATE + dx * 8;
+      const rotX = -dy * 6;
+      card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = `rotate(${BASE_ROTATE}deg)`;
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTilt);
+  } else {
+    initTilt();
+  }
+})();
 
 function toggleMenu() {
   document.querySelector('nav').classList.toggle('nav-open');
