@@ -71,7 +71,7 @@
 
   /* HERO */
   .hero {
-    min-height: 100vh; display:flex; align-items:center; justify-content:center; gap:80px;
+    min-height: 100vh; display:flex; align-items:center; justify-content:center; gap:120px;
     background: linear-gradient(135deg, #e0f6fd 0%, #c8eef9 60%, #a8e4f5 100%);
     padding: 100px 6% 60px; position: relative; overflow:hidden;
   }
@@ -88,12 +88,12 @@
   }
   .hero-content { max-width:560px; flex: 1; }
   .hero-fair-card {
-    flex-shrink:0; width:400px;
+    flex-shrink:0; width:460px;
     background:white; border-radius:18px;
     box-shadow: 0 16px 48px rgba(26,63,92,0.18);
     overflow:hidden; position:relative; z-index:1;
     align-self: center;
-    transform: rotate(-3deg);
+    transform: rotate(-7deg);
     transition: box-shadow 0.2s ease, transform 0.15s ease;
     cursor: default;
     will-change: transform;
@@ -681,7 +681,7 @@ let currentLang = 'es';
   function initTilt() {
     const card = document.querySelector('.hero-fair-card');
     if (!card) return;
-    const BASE_ROTATE = -3; // default tilt: left (toward text)
+    const BASE_ROTATE = -7; // default tilt: left (toward text)
     card.addEventListener('mousemove', function(e) {
       const rect = card.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
