@@ -71,7 +71,7 @@
 
   /* HERO */
   .hero {
-    min-height: 100vh; display:flex; align-items:center; justify-content:center; gap:240px;
+    min-height: 100vh; display:flex; align-items:center; justify-content:center; gap:360px;
     background: linear-gradient(135deg, #e0f6fd 0%, #c8eef9 60%, #a8e4f5 100%);
     padding: 100px 6% 60px; position: relative; overflow:hidden;
   }
@@ -256,6 +256,31 @@
   .fade-up.in-view { opacity:1; transform:translateY(0); }
   @media(prefers-reduced-motion:reduce) { .fade-up { opacity:1; transform:none; transition:none; } }
 
+
+  /* Fair card responsive breakpoints */
+  @media(max-width:1500px) {
+    .hero { gap:120px; }
+    .hero-fair-card { width:420px; }
+  }
+  @media(max-width:1200px) {
+    .hero { gap:60px; }
+    .hero-fair-card { width:360px; }
+  }
+  @media(max-width:1024px) {
+    .hero {
+      flex-direction:column; gap:48px; justify-content:center;
+      padding-top:120px; padding-bottom:80px; min-height:auto;
+    }
+    .hero-content { max-width:100%; text-align:center; }
+    .hero-ctas { justify-content:center; }
+    .hero-trust { justify-content:center; }
+    .hero-fair-card {
+      width:380px; align-self:center;
+      transform: perspective(900px) rotateY(-6deg);
+    }
+    .hero h1 { font-size:2.4rem; }
+  }
+
   @media(max-width:900px) {
     .about-grid, .contact-grid { grid-template-columns:1fr; }
     .products-grid { grid-template-columns:1fr 1fr; }
@@ -279,7 +304,7 @@
   @media(max-width:600px) {
     .products-grid, .why-grid { grid-template-columns:1fr; }
     section { padding:52px 5%; }
-    .hero { padding:80px 5% 50px; }
+    .hero { padding:80px 5% 50px; gap:32px; }
     .hero h1 { font-size:2rem; }
     .hero h1 br { display:none; }
     .hero p { font-size:1rem; }
